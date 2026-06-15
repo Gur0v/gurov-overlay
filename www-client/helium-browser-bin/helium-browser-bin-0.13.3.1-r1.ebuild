@@ -1,5 +1,5 @@
 # Copyright 2026 Gentoo Authors
-# Distributed under the terms of the GNU General Public License v2
+# Distributed under the terms of the BSD 3-Clause License
 
 EAPI=8
 
@@ -91,7 +91,7 @@ src_prepare() {
 
 	sed -i \
 		-e "s|^Exec=.*|Exec=/usr/bin/${PN} %U|" \
-		-e "s|^Icon=.*|Icon=${PN}|" \
+		-e "s|^Icon=.*|Icon=helium|" \
 		helium.desktop || die
 }
 
@@ -101,8 +101,8 @@ src_install() {
 	dodir "${destdir}"
 	cp -pPR * "${ED}/${destdir}/" || die
 
-	newicon -s 256 product_logo_256.png "${PN}.png"
-	newmenu helium.desktop "${PN}.desktop"
+	newicon -s 256 product_logo_256.png helium.png
+	newmenu helium.desktop helium.desktop
 
 	if [[ -f "${ED}/${destdir}/helium-wrapper" ]]; then
 		make_wrapper "${PN}" "./helium-wrapper" "${destdir}"
