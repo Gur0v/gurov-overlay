@@ -1,0 +1,79 @@
+[equibop]
+source = "github"
+github = "Equicord/Equibop"
+use_max_tag = true
+prefix = "v"
+exclude_regex = "(?i).*(alpha|beta).*"
+
+[bun]
+source = "github"
+github = "oven-sh/bun"
+use_latest_release = true
+prefix = "bun-v"
+
+[bubblejail]
+source = "github"
+github = "igo95862/bubblejail"
+use_latest_release = true
+
+[viber]
+source = "aur"
+aur = "viber"
+
+[ente-auth]
+source = "github"
+github = "ente-io/ente"
+use_max_tag = true
+include_regex = "^auth-v.*"
+exclude_regex = "(?i).*(alpha|beta).*"
+prefix = "auth-v"
+
+[emptty]
+source = "github"
+github = "tvrzna/emptty"
+use_latest_release = true
+prefix = "v"
+
+[gearlever]
+source = "github"
+github = "mijorus/gearlever"
+use_latest_release = true
+
+[helium-browser-bin]
+source = "github"
+github = "imputnet/helium-linux"
+use_latest_release = true
+
+[easyeffects]
+source = "github"
+github = "wwmm/easyeffects"
+use_max_tag = true
+prefix = "v"
+exclude_regex = "(?i).*(alpha|beta).*"
+
+[libmysofa]
+source = "github"
+github = "hoene/libmysofa"
+use_latest_release = true
+prefix = "v"
+
+[anydesk]
+source = "aur"
+aur = "anydesk-bin"
+
+[discord-ptb]
+source = "aur"
+aur = "discord-ptb"
+
+[veracrypt]
+source = "github"
+github = "veracrypt/VeraCrypt"
+use_max_tag = true
+prefix = "VeraCrypt_"
+exclude_regex = "(?i).*(alpha|beta).*"
+
+[cachyos-settings]
+source = "github"
+github = "CachyOS/CachyOS-Settings"
+use_latest_release = true
+prefix = "v"

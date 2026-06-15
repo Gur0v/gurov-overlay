@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>gurov@disroot.org</email>
+		<name>Gurov</name>
+	</maintainer>
+	<use>
+		<flag name="webengine">Read documentation inside the application with <pkg>dev-qt/qtwebengine</pkg></flag>
+	</use>
+	<upstream>
+		<doc>https://wwmm.github.io/easyeffects/</doc>
+		<remote-id type="github">wwmm/easyeffects</remote-id>
+	</upstream>
+</pkgmetadata>

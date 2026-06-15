@@ -1,0 +1,5 @@
+net-im/viber:apulse - Enable PulseAudio emulation via media-sound/apulse
+sys-apps/bubblejail:fish-completion - Enable completions for the fish shell
+gui-apps/dozed:logind - Enable login1 D-Bus sleep and lock hooks
+app-portage/flagger:gentoopm - Enable support for resolving short package names via app-portage/gentoopm
+sys-kernel/cachyos-settings:zram - Enable zram configs via sys-apps/zram-generator

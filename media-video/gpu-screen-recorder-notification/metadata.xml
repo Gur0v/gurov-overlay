@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>gurov@disroot.org</email>
+		<name>Gurov</name>
+	</maintainer>
+	<longdescription>
+		Displays ShadowPlay-style notifications for GPU Screen Recorder events
+		such as recording started, stopped, and replay saved.
+	</longdescription>
+</pkgmetadata>
