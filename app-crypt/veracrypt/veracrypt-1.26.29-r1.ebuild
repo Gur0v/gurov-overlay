@@ -35,6 +35,7 @@ src_configure() {
 
 src_compile() {
 	local myemakeargs=(
+		"SOURCE_DATE_EPOCH=${SOURCE_DATE_EPOCH:-$(date -r "${S}/Common/Tcdefs.h" +%s)}"
 		NOSTRIP=1
 		NOTEST=1
 		VERBOSE=1
