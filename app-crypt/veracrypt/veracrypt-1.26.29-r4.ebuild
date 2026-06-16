@@ -29,12 +29,23 @@ BDEPEND="
 
 CONFIG_CHECK="~BLK_DEV_DM ~CRYPTO ~CRYPTO_XTS ~DM_CRYPT ~FUSE_FS"
 
+src_prepare() {
+	# -march=x86-64-v3 defines __AVX2__; Crypto/cpu.h also re-enables it via
+	# #pragma GCC target. Insert undefs directly before blamka-round-opt.h
+	# so the SSE2 branch (which defines BLAKE2_ROUND) is always selected.
+	sed -i \
+		's|^#include "blake2/blamka-round-opt.h"$|#undef __AVX2__\n#undef __AVX512F__\n&|' \
+		Crypto/Argon2/src/opt_sse2.c || die
+	eapply_user
+}
+
 src_configure() {
 	setup-wxwidgets
 }
 
 src_compile() {
 	local myemakeargs=(
+		"SOURCE_DATE_EPOCH=${SOURCE_DATE_EPOCH:-$(date -r "${S}/Common/Tcdefs.h" +%s)}"
 		NOSTRIP=1
 		NOTEST=1
 		VERBOSE=1
@@ -76,7 +87,7 @@ src_install() {
 	if use X; then
 		local s
 		for s in 16 48 128 256; do
-			newicon -s ${s} Resources/Icons/VeraCrypt-${s}x${s}.xpm veracrypt.xpm
+			newicon -s ${s} Resources/Icons/VeraCrypt-${s}x${s}.png veracrypt.png
 		done
 		make_desktop_entry veracrypt "VeraCrypt" veracrypt "Utility;Security"
 	fi
