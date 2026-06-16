@@ -29,6 +29,18 @@ BDEPEND="
 
 CONFIG_CHECK="~BLK_DEV_DM ~CRYPTO ~CRYPTO_XTS ~DM_CRYPT ~FUSE_FS"
 
+src_prepare() {
+	# opt_sse2.c is SSE2-only but any AVX2 host defines
+	# __AVX2__ globally, causing blamka-round-opt.h to take the AVX2 branch
+	# which omits BLAKE2_ROUND. Prepend undefs before any includes fire.
+	local f=Crypto/Argon2/src/opt_sse2.c
+	{ printf '#undef __AVX2__\n#undef __AVX512F__\n'; cat "${f}"; } \
+		> "${f}.patched" || die "failed to patch opt_sse2.c"
+	mv "${f}.patched" "${f}" || die
+
+	eapply_user
+}
+
 src_configure() {
 	setup-wxwidgets
 }
