@@ -39,7 +39,7 @@ source = "github"
 github = "mijorus/gearlever"
 use_latest_release = true
 
-[helium-browser-bin]
+[helium-browser]
 source = "github"
 github = "imputnet/helium-linux"
 use_latest_release = true
