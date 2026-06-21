@@ -9,7 +9,7 @@ The easiest way to add this repository to your Gentoo system is using `eselect r
 
 **1. Enable the overlay:**
 ```bash
-sudo eselect repository add gurov-overlay git https://github.com/Gur0v/gurov-overlay.git
+sudo eselect repository enable gurov-overlay
 ```
 
 **2. Sync the repository:**
