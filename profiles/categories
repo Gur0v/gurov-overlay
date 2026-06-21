@@ -3,6 +3,7 @@ app-misc
 app-portage
 dev-python
 dev-util
+games-util
 gui-apps
 media-libs
 media-sound

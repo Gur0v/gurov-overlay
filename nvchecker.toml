@@ -77,3 +77,19 @@ source = "github"
 github = "CachyOS/CachyOS-Settings"
 use_latest_release = true
 prefix = "v"
+
+[mcpelauncher]
+source = "github"
+github = "minecraft-linux/mcpelauncher-manifest"
+use_max_tag = true
+prefix = "v"
+include_regex = ".*-qt6$"
+regex = "^v?(.*)-qt6$"
+
+[mcpelauncher-ui-qt]
+source = "github"
+github = "minecraft-linux/mcpelauncher-ui-manifest"
+use_max_tag = true
+prefix = "v"
+include_regex = ".*-qt6$"
+regex = "^v?(.*)-qt6$"
