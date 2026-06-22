@@ -1,9 +1,11 @@
-[equibop]
+[anydesk]
+source = "aur"
+aur = "anydesk-bin"
+
+[bubblejail]
 source = "github"
-github = "Equicord/Equibop"
-use_max_tag = true
-prefix = "v"
-exclude_regex = "(?i).*(alpha|beta).*"
+github = "igo95862/bubblejail"
+use_latest_release = true
 
 [bun]
 source = "github"
@@ -11,14 +13,28 @@ github = "oven-sh/bun"
 use_latest_release = true
 prefix = "bun-v"
 
-[bubblejail]
+[cachyos-settings]
 source = "github"
-github = "igo95862/bubblejail"
+github = "CachyOS/CachyOS-Settings"
 use_latest_release = true
+prefix = "v"
 
-[viber]
+[discord-ptb]
 source = "aur"
-aur = "viber"
+aur = "discord-ptb"
+
+[easyeffects]
+source = "github"
+github = "wwmm/easyeffects"
+use_max_tag = true
+prefix = "v"
+exclude_regex = "(?i).*(alpha|beta).*"
+
+[emptty]
+source = "github"
+github = "tvrzna/emptty"
+use_latest_release = true
+prefix = "v"
 
 [ente-auth]
 source = "github"
@@ -28,11 +44,12 @@ include_regex = "^auth-v.*"
 exclude_regex = "(?i).*(alpha|beta).*"
 prefix = "auth-v"
 
-[emptty]
+[equibop]
 source = "github"
-github = "tvrzna/emptty"
-use_latest_release = true
+github = "Equicord/Equibop"
+use_max_tag = true
 prefix = "v"
+exclude_regex = "(?i).*(alpha|beta).*"
 
 [gearlever]
 source = "github"
@@ -44,26 +61,27 @@ source = "github"
 github = "imputnet/helium-linux"
 use_latest_release = true
 
-[easyeffects]
-source = "github"
-github = "wwmm/easyeffects"
-use_max_tag = true
-prefix = "v"
-exclude_regex = "(?i).*(alpha|beta).*"
-
 [libmysofa]
 source = "github"
 github = "hoene/libmysofa"
 use_latest_release = true
 prefix = "v"
 
-[anydesk]
-source = "aur"
-aur = "anydesk-bin"
+[mcpelauncher]
+source = "github"
+github = "minecraft-linux/mcpelauncher-manifest"
+use_max_tag = true
+include_regex = ".*-qt6$"
+from_pattern = "^v(.*)-qt6$"
+to_pattern = "\\1"
 
-[discord-ptb]
-source = "aur"
-aur = "discord-ptb"
+[mcpelauncher-ui-qt]
+source = "github"
+github = "minecraft-linux/mcpelauncher-ui-manifest"
+use_max_tag = true
+include_regex = ".*-qt6$"
+from_pattern = "^v(.*)-qt6$"
+to_pattern = "\\1"
 
 [veracrypt]
 source = "github"
@@ -72,24 +90,6 @@ use_max_tag = true
 prefix = "VeraCrypt_"
 exclude_regex = "(?i).*(alpha|beta).*"
 
-[cachyos-settings]
-source = "github"
-github = "CachyOS/CachyOS-Settings"
-use_latest_release = true
-prefix = "v"
-
-[mcpelauncher]
-source = "github"
-github = "minecraft-linux/mcpelauncher-manifest"
-use_max_tag = true
-prefix = "v"
-include_regex = ".*-qt6$"
-regex = "^v?(.*)-qt6$"
-
-[mcpelauncher-ui-qt]
-source = "github"
-github = "minecraft-linux/mcpelauncher-ui-manifest"
-use_max_tag = true
-prefix = "v"
-include_regex = ".*-qt6$"
-regex = "^v?(.*)-qt6$"
+[viber]
+source = "aur"
+aur = "viber"
