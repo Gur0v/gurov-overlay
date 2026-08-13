@@ -1,0 +1,32 @@
+# Copyright 2026 Gentoo Authors
+# Distributed under the terms of the BSD 3-Clause License
+
+EAPI=8
+
+inherit cmake
+
+DESCRIPTION="Reader for AES SOFA files to get better HRTFs"
+HOMEPAGE="https://github.com/hoene/libmysofa"
+SRC_URI="https://github.com/hoene/libmysofa/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+
+LICENSE="BSD"
+SLOT="0"
+KEYWORDS="~amd64"
+IUSE="static-libs"
+RESTRICT="test"
+
+RDEPEND="
+	virtual/zlib
+"
+DEPEND="
+	${RDEPEND}
+"
+
+src_configure() {
+	local mycmakeargs=(
+		-DBUILD_TESTS=OFF
+		-DBUILD_STATIC_LIBS=$(usex static-libs ON OFF)
+	)
+
+	cmake_src_configure
+}
