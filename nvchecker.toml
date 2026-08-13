@@ -13,22 +13,12 @@ github = "CachyOS/CachyOS-Settings"
 use_latest_release = true
 prefix = "v"
 
-[discord-ptb]
-source = "aur"
-aur = "discord-ptb"
-
 [easyeffects]
 source = "github"
 github = "wwmm/easyeffects"
 use_max_tag = true
 prefix = "v"
 exclude_regex = "(?i).*(alpha|beta).*"
-
-[emptty]
-source = "github"
-github = "tvrzna/emptty"
-use_latest_release = true
-prefix = "v"
 
 [ente-auth]
 source = "github"
