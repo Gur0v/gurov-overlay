@@ -1,9 +1,9 @@
 # Copyright 2026 Gentoo Authors
-# Distributed under the terms of the GNU General Public License v2
+# Distributed under the terms of the BSD 3-Claude License
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{11..14} )
+PYTHON_COMPAT=( python3_{12..15} )
 
 inherit xdg cmake python-any-r1 flag-o-matic optfeature
 
@@ -23,19 +23,22 @@ IUSE="dbus enchant +fonts screencast wayland webkit +X"
 CDEPEND="
 	!net-im/telegram-desktop-bin
 	app-arch/lz4:=
+	app-text/cmark-gfm:=
 	dev-cpp/abseil-cpp:=
 	dev-cpp/ada:=
 	dev-cpp/cld3:=
 	>=dev-cpp/glibmm-2.77:2.68
+	dev-cpp/toomanycooks
 	dev-libs/glib:2
+	dev-libs/libfido2:=
 	dev-libs/openssl:=
 	>=dev-libs/protobuf-21.12
 	dev-libs/qr-code-generator:=
 	dev-libs/xxhash
-	dev-libs/libdispatch
 	>=dev-qt/qtbase-6.5:6=[dbus?,gui,network,opengl,ssl,wayland?,widgets,X?]
 	>=dev-qt/qtimageformats-6.5:6
 	>=dev-qt/qtsvg-6.5:6
+	kde-frameworks/kcoreaddons:6
 	media-libs/libjpeg-turbo:=
 	media-libs/openal
 	media-libs/opus
@@ -43,8 +46,8 @@ CDEPEND="
 	>=media-libs/tg_owt-0_pre20241202:=[screencast=,X=]
 	>=media-video/ffmpeg-6:=[opus,vpx]
 	net-libs/tdlib:=[tde2e]
+	sys-apps/hwloc:=
 	virtual/minizip:=
-	kde-frameworks/kcoreaddons:6
 	!enchant? ( >=app-text/hunspell-1.7:= )
 	enchant? ( app-text/enchant:= )
 	webkit? ( wayland? (
@@ -56,9 +59,11 @@ CDEPEND="
 		x11-libs/xcb-util-keysyms
 	)
 "
+
 RDEPEND="${CDEPEND}
 	webkit? ( || ( net-libs/webkit-gtk:4.1 net-libs/webkit-gtk:6 ) )
 "
+
 DEPEND="${CDEPEND}
 	>=dev-cpp/cppgir-2.0_p20240315
 	>=dev-cpp/ms-gsl-4.1.0
@@ -66,15 +71,23 @@ DEPEND="${CDEPEND}
 	dev-cpp/expected-lite
 	dev-cpp/range-v3
 "
+
 BDEPEND="
 	${PYTHON_DEPS}
 	>=dev-build/cmake-3.16
 	>=dev-cpp/cppgir-2.0_p20260226
 	>=dev-libs/gobject-introspection-1.82.0-r2
+	dev-qt/qtshadertools
 	>=dev-util/gdbus-codegen-2.80.5-r1
 	virtual/pkgconfig
 	wayland? ( dev-util/wayland-scanner )
 "
+
+PATCHES=(
+	"${FILESDIR}"/tdesktop-5.7.2-cstring.patch
+	"${FILESDIR}"/tdesktop-5.8.3-cstdint.patch
+	"${FILESDIR}"/tdesktop-5.14.3-system-cppgir.patch
+)
 
 pkg_pretend() {
 	if [[ ${MERGE_TYPE} != binary ]]; then
@@ -90,26 +103,40 @@ pkg_pretend() {
 src_prepare() {
 	find -type f \( -name 'CMakeLists.txt' -o -name '*.cmake' \) \
 		\! -path './cmake/external/qt/package.cmake' \
-		\! -path './cmake/external/cmark_gfm/CMakeLists.txt' \
 		-print0 | xargs -0 sed -i \
 		-e '/pkg_check_modules(/s/[^ ]*)/REQUIRED &/' \
 		-e '/find_package(/s/)/ REQUIRED)/' \
-		-e '/find_library(/s/)/ REQUIRED)/' || die
+		-e '/find_library(/s/)/ REQUIRED)/' \
+		-e '/find_path(/s/)/ REQUIRED)/' || die
 
-	sed -e '/find_package(lz4 /d' -i cmake/external/lz4/CMakeLists.txt || die
-	sed -e '/find_package(Opus /d' -i cmake/external/opus/CMakeLists.txt || die
-	sed -e '/find_package(xxHash /d' -i cmake/external/xxhash/CMakeLists.txt || die
+	sed -e '/find_package(lz4 /d' \
+		-i cmake/external/lz4/CMakeLists.txt || die
+
+	sed -e '/find_package(Opus /d' \
+		-i cmake/external/opus/CMakeLists.txt || die
+
+	sed -e '/find_package(xxHash /d' \
+		-i cmake/external/xxhash/CMakeLists.txt || die
+
+	sed -e '/find_package(cmark-gfm\(-extensions\)\? /d' \
+		-i cmake/external/cmark_gfm/CMakeLists.txt || die
+
+	sed -e '/find_package(minizip /d' \
+		-i cmake/external/minizip/CMakeLists.txt || die
 
 	local keep=(
 		rlottie
 		libprisma
 		tgcalls
 		xdg-desktop-portal
-		cmark-gfm
+		MicroTeX
 	)
+
 	for x in Telegram/ThirdParty/*; do
 		has "${x##*/}" "${keep[@]}" || rm -r "${x}" || die
 	done
+
+	: > cmake/external/dispatch/CMakeLists.txt || die
 
 	if ! use dbus; then
 		sed -e '/find_package(Qt[^ ]* OPTIONAL_COMPONENTS/s/DBus *//' \
@@ -134,11 +161,11 @@ src_configure() {
 
 	filter-flags -fno-delete-null-pointer-checks
 	append-cppflags -DNDEBUG
-
 	append-cxxflags -Wno-free-nonheap-object
 
 	local no_webkit_wayland=$(use webkit && use wayland && echo no || echo yes)
 	local use_webkit_wayland=$(use webkit && use wayland && echo yes || echo no)
+
 	local mycmakeargs=(
 		-DQT_VERSION_MAJOR=6
 		-DCMAKE_DISABLE_PRECOMPILE_HEADERS=OFF
