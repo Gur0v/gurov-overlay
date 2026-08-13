@@ -90,6 +90,7 @@ pkg_pretend() {
 src_prepare() {
 	find -type f \( -name 'CMakeLists.txt' -o -name '*.cmake' \) \
 		\! -path './cmake/external/qt/package.cmake' \
+		\! -path './cmake/external/cmark_gfm/CMakeLists.txt' \
 		-print0 | xargs -0 sed -i \
 		-e '/pkg_check_modules(/s/[^ ]*)/REQUIRED &/' \
 		-e '/find_package(/s/)/ REQUIRED)/' \
@@ -104,6 +105,7 @@ src_prepare() {
 		libprisma
 		tgcalls
 		xdg-desktop-portal
+		cmark-gfm
 	)
 	for x in Telegram/ThirdParty/*; do
 		has "${x##*/}" "${keep[@]}" || rm -r "${x}" || die
