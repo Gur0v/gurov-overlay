@@ -7,12 +7,6 @@ source = "github"
 github = "igo95862/bubblejail"
 use_latest_release = true
 
-[bun]
-source = "github"
-github = "oven-sh/bun"
-use_latest_release = true
-prefix = "bun-v"
-
 [cachyos-settings]
 source = "github"
 github = "CachyOS/CachyOS-Settings"
@@ -44,21 +38,9 @@ include_regex = "^auth-v.*"
 exclude_regex = "(?i).*(alpha|beta).*"
 prefix = "auth-v"
 
-[equibop]
-source = "github"
-github = "Equicord/Equibop"
-use_max_tag = true
-prefix = "v"
-exclude_regex = "(?i).*(alpha|beta).*"
-
 [gearlever]
 source = "github"
 github = "mijorus/gearlever"
-use_latest_release = true
-
-[helium-browser]
-source = "github"
-github = "imputnet/helium-linux"
 use_latest_release = true
 
 [libmysofa]
