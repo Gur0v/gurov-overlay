@@ -76,10 +76,6 @@ BDEPEND="
 	wayland? ( dev-util/wayland-scanner )
 "
 
-PATCHES=(
-	"${FILESDIR}"/tdesktop-6.5.1-zlib-1.3.2.patch
-)
-
 pkg_pretend() {
 	if [[ ${MERGE_TYPE} != binary ]]; then
 		if has ccache ${FEATURES}; then
