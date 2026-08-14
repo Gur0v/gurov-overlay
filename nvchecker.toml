@@ -2,6 +2,12 @@
 source = "aur"
 aur = "anydesk-bin"
 
+[ayugram-desktop]
+source = "github"
+github = "AyuGram/AyuGramDesktop"
+use_max_tag = true
+prefix = "v"
+
 [bubblejail]
 source = "github"
 github = "igo95862/bubblejail"
@@ -54,6 +60,13 @@ use_max_tag = true
 include_regex = ".*-qt6$"
 from_pattern = "^v(.*)-qt6$"
 to_pattern = "\\1"
+
+[mindwtr]
+source = "github"
+github = "dongdongbh/Mindwtr"
+use_max_tag = true
+prefix = "v"
+exclude_regex = "(?i).*(alpha|beta|rc).*"
 
 [veracrypt]
 source = "github"
