@@ -39,12 +39,6 @@ source = "github"
 github = "mijorus/gearlever"
 use_latest_release = true
 
-[libmysofa]
-source = "github"
-github = "hoene/libmysofa"
-use_latest_release = true
-prefix = "v"
-
 [mcpelauncher]
 source = "github"
 github = "minecraft-linux/mcpelauncher-manifest"
