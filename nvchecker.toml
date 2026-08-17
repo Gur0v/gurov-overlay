@@ -62,6 +62,12 @@ use_max_tag = true
 prefix = "v"
 exclude_regex = "(?i).*(alpha|beta|rc).*"
 
+[protonplus]
+source = "github"
+github = "Vysp3r/ProtonPlus"
+use_max_tag = true
+prefix = "v"
+
 [veracrypt]
 source = "github"
 github = "veracrypt/VeraCrypt"
