@@ -1,0 +1,2 @@
+# Unfixable media viewer bug: photos/videos display upside-down.
+=net-im/ayugram-desktop-7.0.9
