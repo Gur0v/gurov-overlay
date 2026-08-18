@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>gurov@disroot.org</email>
+    <name>Gurov</name>
+  </maintainer>
+  <upstream>
+    <bugs-to>https://codeberg.org/celenity/Dove/issues</bugs-to>
+    <changelog>https://codeberg.org/celenity/Dove/commits/branch/dev</changelog>
+    <remote-id type="codeberg">celenity/Dove</remote-id>
+    <remote-id type="github">thunderbird/autoconfig</remote-id>
+  </upstream>
+</pkgmetadata>
