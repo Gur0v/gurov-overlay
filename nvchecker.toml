@@ -78,3 +78,7 @@ exclude_regex = "(?i).*(alpha|beta).*"
 [viber]
 source = "aur"
 aur = "viber"
+
+[zoom]
+source = "aur"
+flathub = "zoom"
