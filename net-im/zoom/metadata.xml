@@ -2,7 +2,8 @@
 <!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <maintainer type="person">
-    <email>dilfridge@gentoo.org</email>
+    <email>gurov@disroot.org</email>
+    <name>Gurov</name>
   </maintainer>
   <use>
     <flag name="opencl">
