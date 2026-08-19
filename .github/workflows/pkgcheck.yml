@@ -13,3 +13,5 @@ jobs:
 
       - name: Run pkgcheck
         uses: pkgcore/pkgcheck-action@v1
+          with:
+          args: --keywords=-DeprecatedDep,-UnknownKeywords
