@@ -21,6 +21,6 @@ RDEPEND="
 	gentoopm? ( >=app-portage/gentoopm-0.5.0[${PYTHON_USEDEP}] )
 "
 
-EPYTEST_PLUGINS=( xdist )
+EPYTEST_PLUGINS=( pytest-xdist )
 
 distutils_enable_tests pytest
