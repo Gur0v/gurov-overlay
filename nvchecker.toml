@@ -8,6 +8,11 @@ github = "AyuGram/AyuGramDesktop"
 use_max_tag = true
 prefix = "v"
 
+[bottles]
+source = "github"
+github = "bottlesdevs/Bottles"
+use_latest_release = true
+
 [bubblejail]
 source = "github"
 github = "igo95862/bubblejail"
