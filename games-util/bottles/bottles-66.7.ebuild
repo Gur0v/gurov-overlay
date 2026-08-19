@@ -70,12 +70,6 @@ BDEPEND="
 	)
 "
 
-PATCHES=(
-	"${FILESDIR}/${PN}-64.1-dont-stub-gi.repository.patch"
-	"${FILESDIR}/${PN}-64.1-relax-AppStream-file-validation.patch"
-	"${FILESDIR}/${PN}-65.4-remove-Flatpak-related-checks.patch"
-)
-
 EPYTEST_DESELECT=(
 	bottles/tests/backend/integration/playtime/test_disabled_tracking.py::test_disabled_tracking_smoke
 	bottles/tests/backend/integration/playtime/test_wine_executor_playtime.py::test_wine_executor_emits_and_updates_totals
@@ -111,6 +105,11 @@ EPYTEST_IGNORE=(
 
 EPYTEST_PLUGINS=( pytest-mock )
 distutils_enable_tests pytest
+
+src_prepare() {
+    default
+    sed -i '/if.*\.flatpak-info/,/endif/d' bottles/frontend/meson.build || die
+}
 
 src_test() {
 	find bottles/tests -type f -exec \
