@@ -34,6 +34,10 @@ include_regex = "^auth-v.*"
 exclude_regex = "(?i).*(alpha|beta).*"
 prefix = "auth-v"
 
+[firefox-phoenix]
+source = "aur"
+aur = "phoenix-arch"
+
 [gearlever]
 source = "github"
 github = "mijorus/gearlever"
@@ -67,6 +71,10 @@ source = "github"
 github = "Vysp3r/ProtonPlus"
 use_max_tag = true
 prefix = "v"
+
+[thunderbird-dove]
+source = "aur"
+aur = "dove"
 
 [veracrypt]
 source = "github"
