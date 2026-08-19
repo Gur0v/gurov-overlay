@@ -8,6 +8,7 @@ import subprocess
 import sys
 import tempfile
 from pathlib import Path
+
 from portage.versions import vercmp
 
 
@@ -41,7 +42,7 @@ def nvchecker_versions(config, keyfile):
             if "name" in obj and "version" in obj:
                 name = str(obj["name"])
                 version = str(obj["version"])
-                versions[name] = normalize_version(name, version)
+                versions[name] = normalize_version(version)
 
         return versions
 
@@ -59,19 +60,8 @@ def strip_pkgrel(v):
     return v
 
 
-def normalize_version(name, v):
-    v = strip_pkgrel(v)
-
-    # AUR packages phoenix-arch and dove expose versions such as
-    # 202608171, while the corresponding Gentoo ebuilds use
-    # 2026.08.17.1.
-    if name in {"firefox-phoenix", "thunderbird-dove"}:
-        m = re.fullmatch(r"(\d{4})(\d{2})(\d{2})(\d+)", v)
-
-        if m:
-            return f"{m.group(1)}.{m.group(2)}.{m.group(3)}.{m.group(4)}"
-
-    return v
+def normalize_version(v):
+    return strip_pkgrel(v)
 
 
 EBUILD_RE = re.compile(r"^.+?-(\d[\w.]*)(?:-r\d+)?\.ebuild$")
