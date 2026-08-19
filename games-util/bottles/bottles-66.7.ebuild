@@ -107,8 +107,14 @@ EPYTEST_PLUGINS=( pytest-mock )
 distutils_enable_tests pytest
 
 src_prepare() {
-    default
-    sed -i '/if.*\.flatpak-info/,/endif/d' bottles/frontend/meson.build || die
+	default
+
+	sed -i "s|fs.is_file('/' + '.flatpak-info')|fs.is_file(meson.current_source_dir() / 'meson.build')|" \
+		bottles/frontend/meson.build || die
+	sed -i '/^import os$/a os.environ.setdefault("CPAK_CONTAINER_ID", "1")' \
+		bottles/frontend/bottles.py bottles/frontend/cli/cli.py || die
+	sed -i 's|return "FLATPAK_ID" in os.environ or is_cpak()|return False|' \
+		bottles/backend/globals.py || die
 }
 
 src_test() {
