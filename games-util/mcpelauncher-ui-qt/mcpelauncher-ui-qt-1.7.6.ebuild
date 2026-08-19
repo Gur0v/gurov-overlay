@@ -8,17 +8,11 @@ inherit git-r3 cmake flag-o-matic xdg-utils
 DESCRIPTION="Minecraft Bedrock Launcher for Linux (UI)"
 HOMEPAGE="https://github.com/minecraft-linux/mcpelauncher-ui-manifest"
 EGIT_REPO_URI="https://github.com/minecraft-linux/mcpelauncher-ui-manifest.git"
-
-if ver_test "${PV}" -eq 9999; then
-	EGIT_BRANCH="qt6"
-else
-	EGIT_COMMIT="v${PV}-qt6"
-fi
+EGIT_COMMIT="v${PV}-qt6"
 
 LICENSE="MIT GPL-3"
 SLOT="0"
 KEYWORDS="-* ~amd64"
-RESTRICT="network-sandbox"
 
 DEPEND="
 	dev-libs/libzip
