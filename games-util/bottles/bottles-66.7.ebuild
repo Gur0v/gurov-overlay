@@ -115,6 +115,9 @@ src_prepare() {
 		bottles/frontend/bottles.py bottles/frontend/cli/cli.py || die
 	sed -i 's|return "FLATPAK_ID" in os.environ or is_cpak()|return False|' \
 		bottles/backend/globals.py || die
+
+	sed -i -E 's/\.resolve\(strict=(True|False)\)//g' \
+		bottles/backend/umu/provider.py || die
 }
 
 src_test() {
